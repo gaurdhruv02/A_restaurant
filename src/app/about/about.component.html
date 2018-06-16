@@ -55,19 +55,21 @@
   </div>
 
 
-  <div class="container" fxLayout="column" fxLayoutGap="10px">
-      <h2>Corporate Leadership</h2>
-      <md-list fxFlex *ngFor='let leader of leaders'>
-          <md-list-item>
-              <img md-list-avatar src={{leader.image}} alt={{leader.name}}>
-              <h1 md-line> {{leader.name}} </h1>
-              <p md-line>{{leader.designation}}</p>
-              <p md-line>
-                  <span> {{leader.description}} </span>
-              </p>
-          </md-list-item>
-
-      </md-list>
+  <div fxFlex>
+    <h2>Corporate Leadership</h2>
+    <md-list *ngIf="leaders">
+      <md-list-item *ngFor='let leader of leaders'>
+        <img md-list-avatar src={{leader.image}} alt={{leader.name}}>
+        <h4 md-line> {{leader.name}} {{leader.abbr}} </h4>
+        <p md-line>{{leader.designation}}</p>
+        <p md-line> {{leader.description}}
+        </p>
+      </md-list-item>
+    </md-list>
+    <div [hidden]="leaders">
+      <md-spinner></md-spinner>
+      <h4>Loading . . . Please Wait</h4>
+    </div>
 
   </div>
 
